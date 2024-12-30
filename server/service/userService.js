@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const userDao = require('../dao/userDao');
 
 exports.login = async (email, password) => {
+
     const user = await userDao.findUserByEmail(email);
     if (!user) {
         throw new Error('User not found');
@@ -21,6 +22,7 @@ exports.login = async (email, password) => {
 };
 
 exports.createUser = async (name, email, password) => {
+
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = {
         name,
@@ -28,4 +30,9 @@ exports.createUser = async (name, email, password) => {
         password: hashedPassword,
     };
     await userDao.saveUser(user);
+    
 };
+
+exports.readUserData = async (id) => {
+    return await userDao.readUserData(id);
+}

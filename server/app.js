@@ -5,8 +5,6 @@ var logger = require('morgan');
 var cors = require('cors');
 var connectDB = require('./config/db');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var authRouter = require('./routes/userRoute');
 
 var app = express();
@@ -17,14 +15,12 @@ connectDB();
 // Middleware
 app.use(logger('dev'));
 app.use(cors());
-app.use(express.json()); 
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 
 module.exports = app;

@@ -40,3 +40,21 @@ exports.createUser = async (req, res) => {
 
     }
 };
+
+exports.readUserData = async(req,res) => {
+
+    const id = req.params.id;
+
+    try {
+        const userData = await userService.readUserData(id);
+        res.status(200).json({
+            message: 'Successfully fetched user data',
+            userData,
+        });
+    } catch (error) {
+        res.status(400).json({
+            message: 'Failed to fetch user data',
+            error: error.message,
+        });
+    }
+}

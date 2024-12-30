@@ -37,7 +37,9 @@ const RegisterPage: React.FC = () => {
     if (!email) {
       toast.error('Email is required');
       isValid = false;
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
+    }
+    
+    if(!/\S+@\S+\.\S+/.test(email)) {
       toast.error('Email is invalid');
       isValid = false;
     }

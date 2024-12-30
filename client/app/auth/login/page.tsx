@@ -29,7 +29,9 @@ const LoginPage: React.FC = () => {
     if (!email) {
       toast.error("Email is required!", { position: "top-center" });
       return false;
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
+    }
+    
+    if(!/\S+@\S+\.\S+/.test(email)) {
       toast.error("Email is invalid!", { position: "top-center" });
       return false;
     }
@@ -67,7 +69,7 @@ const LoginPage: React.FC = () => {
           router.push("/dashboard");
           return "Login successful!";
         },
-        error: (err: { message: unknown; }) => `Login failed! ${err.message || err}`,
+        error: (err: { message: unknown; }) => `Login failed! ${err.message}`,
       },
       { position: "top-center" } 
     );
@@ -121,7 +123,7 @@ const LoginPage: React.FC = () => {
           Login
         </button>
         <p className="mt-6 text-sm">
-          Do not have an account?{" "}
+          Do not have an account?
           <Link
             className="uppercase font-semibold text-blue-600"
             href="/auth/register"
